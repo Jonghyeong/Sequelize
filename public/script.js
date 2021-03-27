@@ -55,21 +55,15 @@ async function windowActions() {
     console.log(storedMeals);
     console.log(storedMealdata);
 
-    storedMealdata.data.forEach(element => {
-        const appendItem = document.getElementById('mytable');
-        appendItem.classList.add('tr');
-        appendItem.innerHTML = `<tr>
-                        <td class="subtitle has-text-light has-text-weight-bold">
-                            ${element.hall_id[0]}</td>
-                        <td class="has-text-light">
-                            ${element.hall_name[1]}
-                        </td>
-                        <td class="has-text-light">
-                            ${element.hall_address.split(','[2])}
-                        </td>
-                    </tr>
-        `;        
-    });
+    for (const i in storedMealdata){
+        const row = `<tr>
+                        <td>${storedMealdata[i].hall_id}</td>
+                        <td>${storedMealdata[i].hall_name}</td>
+                        <td>${storedMealdata[i].hall_address}</td>
+                      </tr>`;
+        const table = $('mytable');
+        table.append(row)
+    };
 
 }
 
