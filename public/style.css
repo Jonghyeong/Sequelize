@@ -1,0 +1,14 @@
+.table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+h2 {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.thead {
+    background-color: aquamarine;
+}
+
