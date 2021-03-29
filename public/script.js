@@ -1,8 +1,6 @@
-// async function populateRestarants() {
+// async function populateRestarants(Dining) {
 //     console.log('populate');
-//     const diningRequest = await fetch('/api/dining');
-//     const diningData = await diningRequest.json();
-    
+
 
 //     diningData.data.forEach((restaurant) => {
 //         const appendItem = document.getElementById('mytable');
@@ -23,7 +21,7 @@
 //     });
 // }
 
-async function getMeals() {
+async function getDining() {
     console.log('data request');
     const diningRequest = await fetch('/api/dining');
     const diningData = await diningRequest.json();
@@ -44,27 +42,28 @@ function setComplexData(data) {
 
 async function windowActions() {
     console.log('loaded window');
-    const meals = await getMeals();
+    const meals = await getDining();
 
-    // setBasicData();
-    // const cat = getBasicData();
-    // console.log(cat);
     setComplexData(meals);
     const storedMeals = localStorage.getItem('data');
     const storedMealdata = JSON.parse(storedMeals);
     console.log(storedMeals);
     console.log(storedMealdata);
+    
+    storedMealdata.data.forEach((restaurants) => {
+        const table = document.getElementById('mytable');
+        const tablerow = document.createElement('tr');
 
-    for (const i in storedMealdata){
-        const row = `<tr>
-                        <td>${storedMealdata[i].hall_id}</td>
-                        <td>${storedMealdata[i].hall_name}</td>
-                        <td>${storedMealdata[i].hall_address}</td>
-                      </tr>`;
-        const table = $('mytable');
-        table.append(row)
-    };
+        const row = `
+                        <td>${restaurants.hall_id}</td>
+                        <td>${restaurants.hall_name}</td>
+                        <td>${restaurants.hall_address}</td>
 
+                    `;
+
+        tablerow.innerHTML = row;
+        table.append(tablerow)
+    });
 }
 
 window.onload = windowActions;
