@@ -1,4 +1,4 @@
-// async function populateRestarants(Dining) {
+// async function populateRestarants(getDining) {
 //     console.log('populate');
 
 
