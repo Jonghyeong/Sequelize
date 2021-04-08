@@ -9,6 +9,28 @@ const router = express.Router();
 /// /////////////////////////////////
 /// ////Dining Hall Endpoints////////
 /// /////////////////////////////////
+router.route('/wholeMeal')
+  .get(async (req, res) => {
+    try {
+      const meals = await db.Meals.findAll();
+      const macros = await db.Macros.findAll();
+      const wholeMeal = meals.map((meal) => {
+        const macroEntry = macros.find((macro) => macro.meal_id === meal.meal_id);
+        console.log('meals', meal.dataValues)
+        console.log('macroEntry', macroEntry.dataValues);
+
+        return {
+          ...meals.dataValues,
+          ...macroEntry.dataValues
+        };
+      });
+      res.json({data: wholeMeals});
+    } catch (err) {
+      console.error(err);
+      res.json({message: 'Something wrong on the server'})
+    }
+  });
+
 router.get("/dining", async (req, res) => {
   try {
     const halls = await db.DiningHall.findAll();
