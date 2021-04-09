@@ -71,6 +71,7 @@ async function windowActions() {
 
     console.table(selectedMeals)
 
+    //** Create Stacked Chart Meals Vs Macros **/
     const chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         title:{
@@ -93,6 +94,7 @@ async function windowActions() {
             type: "stackedBar",
             name: "calories",
             showInLegend: "true",
+            color: "red",
             dataPoints: [
                 {label:selectedMeals[0].meal_name , y: selectedMeals[0].calories},
                 {label:selectedMeals[1].meal_name , y: selectedMeals[1].calories},
@@ -110,6 +112,7 @@ async function windowActions() {
             type: "stackedBar",
             name: "cholesterol",
             showInLegend: "true",
+            color: "khaki",
             dataPoints: [
                 {label:selectedMeals[0].meal_name , y: selectedMeals[0].cholesterol},
                 {label:selectedMeals[1].meal_name , y: selectedMeals[1].cholesterol},
@@ -127,6 +130,7 @@ async function windowActions() {
             type: "stackedBar",
             name: "sodium",
             showInLegend: "true",
+            color: "lightblue",
             dataPoints: [
                 {label:selectedMeals[0].meal_name , y: selectedMeals[0].sodium},
                 {label:selectedMeals[1].meal_name , y: selectedMeals[1].sodium},
@@ -144,6 +148,7 @@ async function windowActions() {
             type: "stackedBar",
             name: "carbs",
             showInLegend: "true",
+            color: "lightgreen",
             dataPoints: [
                 {label:selectedMeals[0].meal_name , y: selectedMeals[0].carbs},
                 {label:selectedMeals[1].meal_name , y: selectedMeals[1].carbs},
@@ -161,6 +166,7 @@ async function windowActions() {
             type: "stackedBar",
             name: "protein",
             showInLegend: "true",
+            color: "salmon",
             dataPoints: [
                 {label:selectedMeals[0].meal_name , y: selectedMeals[0].protein},
                 {label:selectedMeals[1].meal_name , y: selectedMeals[1].protein},
@@ -178,6 +184,7 @@ async function windowActions() {
             type: "stackedBar",
             name: "fat",
             showInLegend: "true",
+            color: "navy",
             dataPoints: [
                 {label:selectedMeals[0].meal_name , y: selectedMeals[0].fat},
                 {label:selectedMeals[1].meal_name , y: selectedMeals[1].fat},
@@ -199,13 +206,13 @@ async function windowActions() {
     
 
     function toggleDataSeries(e) {
-	if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-		e.dataSeries.visible = false;
-	}
-	else {
-		e.dataSeries.visible = true;
-	}
-	chart.render();
+        if(typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+            e.dataSeries.visible = false;
+        }
+        else {
+            e.dataSeries.visible = true;
+        }
+        chart.render();
     };
 };
 
