@@ -22,6 +22,7 @@ async function windowActions() {
     console.table(selectedMeals)
 
     const dataPoints1 =[];
+    
     for(let i = 0; i < selectedMeals.length; i++) {
         console.log(dataPoints1);
         dataPoints1.push({label:selectedMeals[i].meal_name, y: selectedMeals[i].calories});
